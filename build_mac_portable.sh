@@ -67,6 +67,7 @@ PYBIN="$(find "$PKG/runtime" -type f -name 'python3.10' -path '*/bin/*' | head -
 #    darwin 平台按 pyproject.toml [tool.uv.sources] 解析 torch CPU 版
 # ---------------------------------------------------------------------------
 log "导出并安装 Python 依赖（约 10-20 分钟）"
+uv lock
 uv export --frozen --no-hashes --no-dev --no-emit-project -o "$BUILD_DIR/requirements.txt"
 uv pip install --break-system-packages --python "$PYBIN" --index-strategy unsafe-best-match \
   -r "$BUILD_DIR/requirements.txt"
