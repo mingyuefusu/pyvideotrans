@@ -40,6 +40,8 @@ class BindSignalsMixin:
         self.glossary.clicked.connect(lambda: show_glossary_editor(self))
         self.action_biaozhun.triggered.connect(self.win_action.set_biaozhun)
         self.action_tiquzimu.triggered.connect(self.win_action.set_tiquzimu)
+        # 语音转录以面板形式嵌入主界面 main_stack（见 _actions_recogn_panel.py）
+        self.fn_recogn.triggered.connect(self.win_action.open_recogn_panel)
         self.set_ass.clicked.connect(lambda: get_win('set_ass'))
         self.import_subtitle.clicked.connect(lambda: self.win_action.import_srtfile('spoken'))
         self.import_subtitle_target.clicked.connect(lambda: self.win_action.import_srtfile('target'))

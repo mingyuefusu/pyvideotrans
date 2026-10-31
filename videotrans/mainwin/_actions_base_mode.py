@@ -6,6 +6,7 @@ from videotrans.recognition import ALLOW_CHANGE_MODEL
 class WinActionBaseModeMixin:
 
     def set_biaozhun(self):
+        self.main.main_stack.setCurrentIndex(0)
         self.main.action_biaozhun.setChecked(True)
         self.main.splitter.setSizes([self.main.width - 300, 300])
         self.main.app_mode = 'biaozhun'
@@ -71,6 +72,7 @@ class WinActionBaseModeMixin:
         self.toggle_adv()
 
     def set_tiquzimu(self):
+        self.main.main_stack.setCurrentIndex(0)
         self.main.action_tiquzimu.setChecked(True)
         self.main.splitter.setSizes([self.main.width - 300, 300])
         self.main.app_mode = 'tiqu'

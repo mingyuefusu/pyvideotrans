@@ -7,10 +7,11 @@ from videotrans.task.taskcfg import InputFile
 from ._actions_base_mode import WinActionBaseModeMixin
 from ._actions_base_file import WinActionBaseFileMixin
 from ._actions_base_misc import WinActionBaseMiscMixin
+from ._actions_recogn_panel import WinActionRecognPanelMixin
 
 
 @dataclass
-class WinActionBase(WinActionBaseModeMixin, WinActionBaseFileMixin, WinActionBaseMiscMixin):
+class WinActionBase(WinActionBaseModeMixin, WinActionBaseFileMixin, WinActionBaseMiscMixin, WinActionRecognPanelMixin):
     main: MainWindow = field(default_factory=MainWindow, repr=False)
     law: Optional[Any] = None
 

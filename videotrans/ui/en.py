@@ -270,7 +270,10 @@ class Ui_MainWindow(object):
 
 
         self.horizontalLayout_7.addWidget(self.splitter)
-        MainWindow.setCentralWidget(self.centralwidget)
+        # 嵌入式面板容器：第0页为主界面，功能面板(如语音转录)运行时懒加载加入
+        self.main_stack = QtWidgets.QStackedWidget()
+        self.main_stack.addWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.main_stack)
 
         self.statusBar = QtWidgets.QStatusBar()
         self.statusBar.setObjectName("statusBar")

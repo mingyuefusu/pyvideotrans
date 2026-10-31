@@ -135,7 +135,7 @@ MENU_CFG_PANEL = [
     # 左侧菜单
     ("action_biaozhun", tr("Standard Function Mode"), False),
     ("action_tiquzimu", tr("Extract Srt And Translate"), False),
-    ("fn_recogn", tr("Speech Recognition Text"), None),
+    ("fn_recogn", tr("Speech Recognition Text"), False),
     ("fn_peiyin", tr("From  Text  Into  Speech"), None),
     ("fn_fanyisrt", tr("Text  Or Srt  Translation"), None),
     ("fn_peiyinrole", tr("Multi voice dubbing for SRT"), None),
