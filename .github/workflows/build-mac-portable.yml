@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: mac portable (${{ inputs.arch }})
-    runs-on: ${{ inputs.arch == 'x86_64' && 'macos-13' || 'macos-14' }}
+    runs-on: macos-14
     timeout-minutes: 120
     steps:
       - name: Checkout
