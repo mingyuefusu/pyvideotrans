@@ -68,7 +68,7 @@ PYBIN="$(find "$PKG/runtime" -type f -name 'python3.10' -path '*/bin/*' | head -
 # ---------------------------------------------------------------------------
 log "导出并安装 Python 依赖（约 10-20 分钟）"
 uv export --frozen --no-hashes --no-dev --no-emit-project -o "$BUILD_DIR/requirements.txt"
-uv pip install --python "$PYBIN" --index-strategy unsafe-best-match \
+uv pip install --break-system-packages --python "$PYBIN" --index-strategy unsafe-best-match \
   -r "$BUILD_DIR/requirements.txt"
 
 # ---------------------------------------------------------------------------
