@@ -71,14 +71,14 @@ class AppParams:
 
             "target_dir": "",
 
-            "source_language": "en",
+            "source_language": "简体中文",
             "target_language": "zh-cn",
 
-            "recogn_type": 0,#语音识别默认 faster-whisper
+            "recogn_type": 3,#语音识别默认 阿里FunASR(内置)
             "translate_type": 0,# 默认 google翻译
             "tts_type": 0,# 默认 edge-tts
 
-            "model_name": "large-v3-turbo",#默认语音识别模型
+            "model_name": "SenseVoiceSmall",#默认语音识别模型
 
 
             "voice_autorate": True,# 默认选中配音加速
@@ -92,9 +92,9 @@ class AppParams:
 
 
             # 语音转录面板参数
-            "stt_source_language": 0,
-            "stt_recogn_type": 0,
-            "stt_model_name": "large-v3-turbo",
+            "stt_source_language": 0,# 0=简体中文
+            "stt_recogn_type": 3,# 阿里FunASR(内置)
+            "stt_model_name": "SenseVoiceSmall",
             "stt_cuda": False,
             "stt_remove_noise": False,
             "stt_enable_diariz": False,
@@ -102,6 +102,7 @@ class AppParams:
             "stt_rephrase": False,
             "stt_nums_diariz": 0,
             "stt_fix_punc": 0,
+            "stt_out_format": "txt",# 输出纯文本
             "subtitlecover_outformat": "srt",
             # 翻译字幕面板
             "trans_translate_type": 0,

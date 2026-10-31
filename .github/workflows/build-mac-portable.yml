@@ -1,0 +1,36 @@
+name: Build Mac Portable (绿色版)
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: '目标 Mac 芯片架构'
+        required: true
+        default: 'arm64'
+        type: choice
+        options:
+          - arm64
+          - x86_64
+
+jobs:
+  build:
+    name: mac portable (${{ inputs.arch }})
+    runs-on: ${{ inputs.arch == 'x86_64' && 'macos-13' || 'macos-14' }}
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Build portable package
+        run: bash build_mac_portable.sh "${{ inputs.arch }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sp-mac-portable-${{ inputs.arch }}
+          path: build-mac-portable/sp-mac-portable-*.zip
+          retention-days: 7
+          if-no-files-found: error

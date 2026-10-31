@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = "==3.10.*"
 resolution-markers = [
     "platform_machine != 's390x' and sys_platform == 'win32'",
@@ -4327,7 +4327,7 @@ dependencies = [
     { name = "h5py" },
     { name = "hdbscan" },
     { name = "hf-xet", version = "1.1.8", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 's390x' and sys_platform == 'linux') or (platform_machine == 's390x' and sys_platform == 'win32')" },
-    { name = "hf-xet", version = "1.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine != 's390x' and sys_platform == 'linux') or (platform_machine != 's390x' and sys_platform == 'win32') or (sys_platform != 'linux' and sys_platform != 'win32')" },
+    { name = "hf-xet", version = "1.5.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine != 's390x' or (sys_platform != 'linux' and sys_platform != 'win32')" },
     { name = "hpack" },
     { name = "hstspreload" },
     { name = "httpcore" },
