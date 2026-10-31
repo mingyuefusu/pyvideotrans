@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: mac portable (${{ inputs.arch }})
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 120
     steps:
       - name: Checkout
