@@ -176,6 +176,8 @@ class SpeechToText(BaseTask):
 
         self._save_srt_target(self.source_srt_list, self.cfg.target_sub)
         if self.out_format == 'txt':
+            # 选txt：只保留纯文本，带时间轴的 srt 一并删除
+            Path(self.cfg.target_sub).unlink(missing_ok=True)
             self.cfg.target_sub = self.cfg.target_sub[:-3] + 'txt'
             Path(self.cfg.target_sub).write_text("\r\n".join([it["text"] for it in self.source_srt_list]),
                                                  encoding='utf-8')
