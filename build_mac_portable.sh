@@ -72,6 +72,10 @@ uv export --frozen --no-hashes --no-dev --no-emit-project -o "$BUILD_DIR/require
 uv pip install --break-system-packages --python "$PYBIN" --index-strategy unsafe-best-match \
   -r "$BUILD_DIR/requirements.txt"
 
+# pysoundfile 0.9(旧占位包) 与 soundfile 0.13 文件互相覆盖，强制重装正确版本
+log "重装 soundfile 修复 libsndfile 冲突"
+uv pip install --break-system-packages --reinstall --python "$PYBIN" "soundfile==0.13.1"
+
 # ---------------------------------------------------------------------------
 # 4. 复制源码到包目录
 # ---------------------------------------------------------------------------
@@ -199,14 +203,16 @@ QT_QPA_PLATFORM=offscreen "$PYBIN" sp.py > "$BUILD_DIR/smoke.log" 2>&1 &
 SMOKE_PID=$!
 sleep 40
 if kill -0 "$SMOKE_PID" 2>/dev/null; then
-  kill "$SMOKE_PID" 2>/dev/null || true
-  wait "$SMOKE_PID" 2>/dev/null || true
-  echo "[ok] GUI 进程存活 40 秒"
+  echo "[ok] GUI 进程存活 40 秒，强制结束"
+  kill -9 "$SMOKE_PID" 2>/dev/null || true
 else
   echo "[x] GUI 进程提前退出，日志尾部:" >&2
   tail -n 40 "$BUILD_DIR/smoke.log" >&2 || true
   die "冒烟测试失败"
 fi
+# 清理 GUI 可能派生的残留子进程，避免挂住 job
+pkill -9 -f "sp\.py" 2>/dev/null || true
+wait 2>/dev/null || true
 tail -n 5 "$BUILD_DIR/smoke.log" || true
 
 # ---------------------------------------------------------------------------
